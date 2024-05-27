@@ -41,7 +41,11 @@ class PesananController
      */
     public function getCompletedPesanan()
     {
-        $pesanan = Pesanan::where('status_selesai', true)->get();
+        $pesanan = Pesanan::where('status_selesai', true)
+            ->orderBy('updated_at', 'desc')
+            ->limit(5)
+            ->get();
+
         dd($pesanan);
     }
 
