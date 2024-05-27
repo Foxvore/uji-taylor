@@ -19,3 +19,6 @@ Route::get('/admin-pesanan', function () {
 Route::get('/admin-tambah', function () {
     return view('tambah');
 });
+Route::get('/admin-edit', function () {
+    return view('edit');
+});

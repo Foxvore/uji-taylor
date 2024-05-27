@@ -32,8 +32,27 @@
                 </div>
             </div>
             <hr class="mx-3 my-3">
-            <div class="pb-3 ps-4 fs-4">
-                Rp. 34.000
+            <div class="d-flex justify-content-between mb-3">
+                <div class="ps-4 fs-4">
+                    Rp. 34.000
+                </div>
+                <div class="d-flex me-3">
+                    <a href="#" class="me-2">
+                        <button class="btn btn-warning">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                    </a>
+                    <a href="#" class="me-2">
+                        <button class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-success">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
         @endfor
