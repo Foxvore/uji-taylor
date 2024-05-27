@@ -1,11 +1,12 @@
-@extends('layout.main') @section('content')
-<x-navbar-admin></x-navbar-admin>
+@extends('layout.main')
+@section('content')
+
 <div
     class="bg-polos"
     style="display: flex; align-items: center; justify-content: center"
 >
     <div class="card-tambah">
-        <div class="title-tambah fw-bold fs-2">Tambah Pesanan</div>
+        <div class="title-tambah fw-bold fs-2">Edit Pesanan</div>
         <hr />
         <form action="">
             <div class="d-flex mb-3">
