@@ -25,12 +25,12 @@ class PesananSeeder extends Seeder
         for ($i = 0; $i <= 5; $i++) {
             Pesanan::insert([
                 'kategori_id' => $faker->randomElement($categories),
-                'kode_pesanan' => $prefix . $i+1,
+                'kode_pesanan' => $prefix . $i + 1,
                 'nama_pemesan' => $faker->name,
                 'kontak' => $faker->phoneNumber,
                 'harga' => $faker->numberBetween(10000, 100000),
                 'notes' => $faker->paragraph,
-                'status_selesai' => $faker->boolean,
+                'status_selesai' => false,
                 'tanggal_pesanan' => $faker->date,
                 'estimasi' => $faker->date,
                 'created_at' => $createdAt,
