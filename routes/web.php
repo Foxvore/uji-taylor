@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,9 +14,10 @@ Route::get('/login', [AuthController::class, 'loginView']);
 Route::post('/login', [AuthController::class, 'authLogin']);
 
 // Admin Dashboard Routes
-Route::get('/admin', function () {
-    return view('dashboard');
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
 });
+
 Route::get('/admin-pesanan', function () {
     return view('pesanan');
 });
@@ -25,3 +27,5 @@ Route::get('/admin-tambah', function () {
 Route::get('/admin-edit', function () {
     return view('edit');
 });
+
+Route::get('/test', [PesananController::class, 'test']);
