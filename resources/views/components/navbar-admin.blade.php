@@ -14,8 +14,8 @@
                         aria-current="page" href="/admin/dashboard" style="color: black; font-size: 25px">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="{{ request()->is('admin-pesanan') ? 'nav-link fw-bold' : 'nav-link' }}"
-                        aria-current="page" href="/admin-pesanan" style="color: black; font-size: 25px">Pesanan</a>
+                    <a class="{{ request()->is('admin/pesanan') ? 'nav-link fw-bold' : 'nav-link' }}"
+                        aria-current="page" href="/admin/pesanan" style="color: black; font-size: 25px">Pesanan</a>
                 </li>
                 <li class="nav-item">
                     <a class="{{ request()->is('admin-tambah') ? 'nav-link fw-bold' : 'nav-link' }}" aria-current="page"
