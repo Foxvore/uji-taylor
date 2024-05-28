@@ -16,11 +16,9 @@ Route::post('/login', [AuthController::class, 'authLogin']);
 // Admin Dashboard Routes
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/pesanan', [AdminController::class, 'pesanan']);
 });
 
-Route::get('/admin-pesanan', function () {
-    return view('pesanan');
-});
 Route::get('/admin-tambah', function () {
     return view('tambah');
 });
