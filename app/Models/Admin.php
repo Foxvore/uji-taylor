@@ -11,6 +11,7 @@ class Admin extends Model
     use HasFactory, Notifiable;
 
     protected $table = 'm_admin';
+    protected $primaryKey = 'id_admin';
     protected $fillable = [
         'name',
         'username',
