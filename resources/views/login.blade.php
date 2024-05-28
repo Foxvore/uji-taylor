@@ -14,7 +14,8 @@
                 <div class="fs-4 mb-1">Masuk ke akunmu</div>
                 <div class="fw-light">Untuk memanajemen data anda perlu masuk terlebih dahulu</div>
                 <div class="my-4">
-                    <form action="{{ route('/login') }}" method="POST">
+                    <form action="/login" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="exampleInputUsername1" class="form-label">Nama Pengguna</label>
                             <input type="username" class="form-control" id="exampleInputUsername1"
@@ -36,6 +37,11 @@
                         </div>
 
                         <button type="submit" class="tombol-submit-login btn">Submit</button>
+                        @if (session('error'))
+                            <div>
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>
