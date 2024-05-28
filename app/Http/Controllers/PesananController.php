@@ -134,6 +134,24 @@ class PesananController
         dd($pesanan);
     }
 
+    public function test()
+    {
+        $pesanan = Pesanan::findOrFail(1);
+
+        $pesanan->kategori_id = $pesanan->kategori_id;
+        $pesanan->kode_pesanan = $pesanan->kode_pesanan;
+        $pesanan->nama_pemesan = $pesanan->nama_pemesan;
+        $pesanan->kontak = $pesanan->kontak;
+        $pesanan->harga = $pesanan->harga;
+        $pesanan->notes = $pesanan->notes;
+        $pesanan->status_selesai = true;
+        $pesanan->tanggal_pesanan = $pesanan->tanggal_pesanan;
+        $pesanan->estimasi = $pesanan->estimasi;
+
+        $pesanan->save();
+        dd($pesanan);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
