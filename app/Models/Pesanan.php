@@ -39,7 +39,22 @@ class Pesanan extends Model
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+
+                $kategori = $pesanan->kategori;
+                if ($kategori) {
+                    $kategori->increment('total_pemasukan', $pesanan->harga);
+                }
             }
         });
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(LogSelesai::class, 'pesanan_id', 'id_pesanan');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
     }
 }
