@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\Pesanan;
 use App\Models\LogSelesai;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,18 @@ class AdminController
             'p_vermak' => $pemasukan_vermak,
             'j_pembuatan' => $jumlah_pembuatan,
             'j_vermak' => $jumlah_vermak,
+        ]);
+    }
+
+    public function pesanan()
+    {
+
+        $uncompleted_order = Pesanan::where('status_selesai', false)->get();
+        $completed_order = Pesanan::where('status_selesai', true)->get();
+
+        return view('pesanan', [
+            'uo' => $uncompleted_order,
+            'co' => $completed_order,
         ]);
     }
 }
