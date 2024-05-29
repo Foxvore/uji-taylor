@@ -2,78 +2,81 @@
 @extends('layout.main')
 
 @section('content')
-<x-navbar-admin></x-navbar-admin>
-<div class="bg-polos">
-    <div class="isi d-flex justify-content-center">
-        <div>
-            <input type="radio" name="radio-milih" id="pilihan1" value="jahit" checked>
-            <label class="label px-5 py-2 fs-4" for="pilihan1">Jahit</label>
+    <x-navbar-admin></x-navbar-admin>
+    <div class="bg-polos">
+        <div class="isi d-flex justify-content-center">
+            <div>
+                <input type="radio" name="radio-milih" id="pilihan1" value="jahit" checked>
+                <label class="label px-5 py-2 fs-4" for="pilihan1">Jahit</label>
+            </div>
+            <div class="px-3"></div>
+            <div>
+                <input type="radio" name="radio-milih" value="vermak" id="pilihan2">
+                <label class="label px-5 py-2 fs-4" for="pilihan2">Vermak</label>
+            </div>
         </div>
-        <div class="px-3"></div>
-        <div>
-            <input type="radio" name="radio-milih" value="vermak" id="pilihan2">
-            <label class="label px-5 py-2 fs-4" for="pilihan2">Vermak</label>
-        </div>
-    </div>
-    <div class="isi-card">
-        <div id="section-jahit" style="display: none">
-            <div class="card-belum">
-                <div class="slide">
-                    @foreach ($uo as $uo)
-                    <div class="kartu">
-                        <div class="d-flex justify-content-end align-items-end pt-2 pe-2">
-                            <div class="me-2">
-                            Status: belum selesai 
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 21 21" fill="none">
-                                <circle cx="10.5" cy="10.5" r="10.5" fill="#F65959"/>
-                            </svg>
-                        </div>
-                        <div class="d-flex" style="height: 9rem">
-                            <div class="card-kiri ps-4">
-                                <div class="fs-2 semi-bold">Buyer</div>
-                                <div class="light ">Jahit</div>
-                                <div class="d-flex pt-2">
-                                    <i class="fa-solid fa-shirt"></i>
-                                    <div class="ps-1">Baju Lebaran</div>
+        <div class="isi-card">
+            <div id="section-jahit" style="display: none">
+                <div class="card-belum">
+                    <div class="slide">
+                        @foreach ($uoj as $uoj)
+                            <div class="kartu">
+                                <div class="d-flex justify-content-end align-items-end pt-2 pe-2">
+                                    <div class="me-2">
+                                        Status: belum selesai
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 21 21" fill="none">
+                                        <circle cx="10.5" cy="10.5" r="10.5" fill="#F65959" />
+                                    </svg>
                                 </div>
-                                <div class="light pt-1">Estimasi</div>
-                                <div class="d-flex pt-2">
-                                    <i class="fa-solid fa-calendar-days"></i>
-                                    <div class="ps-1">10/10/2100</div>
+                                <div class="d-flex" style="height: 9rem">
+                                    <div class="card-kiri ps-4">
+                                        <div class="fs-2 semi-bold text-nowrap"
+                                            style="width: 115px; text-overflow: ellipsis; overflow: hidden;">
+                                            {{ $uoj->nama_pemesan }}
+                                        </div>
+                                        <div class="light text-capitalize">Kode Pesanan</div>
+                                        <div class="d-flex pt-2">
+                                            <i class="fa-solid fa-shirt"></i>
+                                            <div class="ps-1">{{ $uoj->kode_pesanan }}</div>
+                                        </div>
+                                        <div class="light pt-1">Estimasi</div>
+                                        <div class="d-flex pt-2">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            <div class="ps-1">{{ $uoj->estimasi }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="card-kanan">
+                                        <div>Catatan:</div>
+                                        <div class="catatan me-3 mt-1">
+                                            <div class="isi-catatan">{{ $uoj->notes }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mx-3 my-3">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <div class="ps-4 fs-4">
+                                        Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
+                                    </div>
+                                    <div class="d-flex me-3">
+                                        <button type="button" class="btn btn-warning" style="color: white" data-bs-toggle="modal" data-bs-target="#detailModal{{ $uo->id_pesanan }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <a href="#" class="me-2">
+                                            <button class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </a>
+                                        <a href="#">
+                                            <button class="btn btn-success">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-kanan">
-                                <div>Catatan:</div>
-                                <div class="catatan me-3 mt-1">
-                                    <div class="isi-catatan"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mx-3 my-3">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="ps-4 fs-4">
-                                Rp. 34.000
-                            </div>
-                            <div class="d-flex me-3">
-                                <button type="button" class="btn btn-warning" style="color: white" data-bs-toggle="modal" data-bs-target="#detailModal{{ $uo->id_pesanan }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                
-                                <a href="#" class="me-2">
-                                    <button class="btn btn-danger">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </a>
-                                <a href="#">
-                                    <button class="btn btn-success">
-                                        <i class="fa-solid fa-check"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- modal --}}
+                            {{-- modal --}}
                     <div class="modal fade" id="detailModal{{ $uo->id_pesanan }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                           <div class="modal-content" style="color: black">
@@ -133,46 +136,51 @@
                         </div>
                       </div>
                       {{-- modal --}}   
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <div class="card-sudah">
-                <div class="slide">
-                    @foreach ($co as $co)  
-                    <div class="kartu">
-                        <div class="d-flex justify-content-end align-items-end pt-2 pe-2">
-                            <div class="me-2">
-                            Status: sudah selesai 
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 21 21" fill="none">
-                                <circle cx="10.5" cy="10.5" r="10.5" fill="#ABF373"/>
-                            </svg>
-                        </div>
-                        <div class="d-flex" style="height: 9rem">
-                            <div class="card-kiri ps-4">
-                                <div class="fs-2 semi-bold">Buyer</div>
-                                <div class="light ">Jahit</div>
-                                <div class="d-flex pt-2">
-                                    <i class="fa-solid fa-shirt"></i>
-                                    <div class="ps-1">Baju Lebaran</div>
+                <div class="card-sudah">
+                    <div class="slide">
+                        @foreach ($coj as $coj)
+                            <div class="kartu">
+                                <div class="d-flex justify-content-end align-items-end pt-2 pe-2">
+                                    <div class="me-2">
+                                        Status: sudah selesai
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 21 21" fill="none">
+                                        <circle cx="10.5" cy="10.5" r="10.5" fill="#ABF373" />
+                                    </svg>
                                 </div>
-                                <div class="light pt-1">Estimasi</div>
-                                <div class="d-flex pt-2">
-                                    <i class="fa-solid fa-calendar-days"></i>
-                                    <div class="ps-1">10/10/2100</div>
+                                <div class="d-flex" style="height: 9rem">
+                                    <div class="card-kiri ps-4">
+                                        <div class="fs-2 semi-bold text-nowrap"
+                                            style="width: 115px; text-overflow: ellipsis; overflow: hidden;">
+                                            {{ $uoj->nama_pemesan }}
+                                        </div>
+                                        <div class="light text-capitalize">Kode Pesanan</div>
+                                        <div class="d-flex pt-2">
+                                            <i class="fa-solid fa-shirt"></i>
+                                            <div class="ps-1">{{ $uoj->kode_pesanan }}</div>
+                                        </div>
+                                        <div class="light pt-1">Estimasi</div>
+                                        <div class="d-flex pt-2">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            <div class="ps-1">{{ $uoj->estimasi }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="card-kanan">
+                                        <div>Catatan:</div>
+                                        <div class="catatan me-3 mt-1">
+                                            <div class="isi-catatan">{{ $uoj->notes }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-kanan">
-                                <div>Catatan:</div>
-                                <div class="catatan me-3 mt-1">
-                                    <div class="isi-catatan">Misalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjang</div>
-                                </div>
+                            <hr class="mx-3 my-3">
+                            <div class="ps-4 fs-4">
+                                Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
                             </div>
-                        </div>
-                        <hr class="mx-3 my-3">
-                        <div class="pb-3 ps-4 fs-4">
-                            Rp. 34.000
-                        </div>
                     </div>
                     @endforeach
                 </div>

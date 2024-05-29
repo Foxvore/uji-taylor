@@ -18,7 +18,7 @@ class KategoriSeeder extends Seeder
         $updatedAt = Carbon::today()->toDateString();
 
         Kategori::insert([
-            'nama_kategori' => 'pembuatan',
+            'nama_kategori' => 'jahit',
             'total_pemasukan' => 0,
             'created_at' => $createdAt,
             'updated_at' => $updatedAt,
