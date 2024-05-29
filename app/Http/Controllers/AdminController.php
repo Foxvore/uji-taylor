@@ -11,10 +11,10 @@ class AdminController
 {
     public function dashboard()
     {
-        $pemasukan_pembuatan = Kategori::where('id_kategori', 1)->value('total_pemasukan');
-        $pemasukan_vermak = Kategori::where('id_kategori', 2)->value('total_pemasukan');
+        $jahit = Kategori::where('id_kategori', 1)->first();
+        $vermak = Kategori::where('id_kategori', 2)->first();
 
-        $jumlah_pembuatan = LogSelesai::whereHas('pesanan', function ($query) {
+        $jumlah_jahit = LogSelesai::whereHas('pesanan', function ($query) {
             $query->where('kategori_id', 1);
         })->with('pesanan')->get()->count();
 
@@ -22,25 +22,46 @@ class AdminController
             $query->where('kategori_id', 2);
         })->with('pesanan')->get()->count();
 
-        // return response()->json();
+        // return response()->json($jahit->total_pemasukan);
 
         return view('dashboard', [
-            'p_pembuatan' => $pemasukan_pembuatan,
-            'p_vermak' => $pemasukan_vermak,
-            'j_pembuatan' => $jumlah_pembuatan,
+            'jahit' => $jahit,
+            'vermak' => $vermak,
+            'j_jahit' => $jumlah_jahit,
             'j_vermak' => $jumlah_vermak,
         ]);
     }
 
-    public function pesanan()
+    public function getPesanan()
     {
 
-        $uncompleted_order = Pesanan::where('status_selesai', false)->get();
-        $completed_order = Pesanan::where('status_selesai', true)->get();
+        $uncompleted_order_jahit = Pesanan::where('status_selesai', false)
+            ->where('kategori_id', 1)
+            ->with('kategori')
+            ->get();
+
+        $completed_order_jahit = Pesanan::where('status_selesai', true)
+            ->where('kategori_id', 1)
+            ->with('kategori')
+            ->get();
+
+        $uncompleted_order_vermak = Pesanan::where('status_selesai', false)
+            ->where('kategori_id', 2)
+            ->with('kategori')
+            ->get();
+
+        $completed_order_vermak = Pesanan::where('status_selesai', true)
+            ->where('kategori_id', 2)
+            ->with('kategori')
+            ->get();
+
+        // return response()->json($uncompleted_order_jahit);
 
         return view('pesanan', [
-            'uo' => $uncompleted_order,
-            'co' => $completed_order,
+            'uoj' => $uncompleted_order_jahit,
+            'coj' => $completed_order_jahit,
+            'uov' => $uncompleted_order_vermak,
+            'cov' => $completed_order_vermak,
         ]);
     }
 }
