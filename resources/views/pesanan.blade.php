@@ -60,7 +60,7 @@
                                         Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
                                     </div>
                                     <div class="d-flex me-3">
-                                        <button type="button" class="btn btn-warning" style="color: white" data-bs-toggle="modal" data-bs-target="#detailModal{{ $uo->id_pesanan }}">
+                                        <button type="button" class="btn btn-warning" style="color: white" data-bs-toggle="modal" data-bs-target="#detailModal{{ $uoj->id_pesanan }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         <a href="#" class="me-2">
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             {{-- modal --}}
-                    <div class="modal fade" id="detailModal{{ $uo->id_pesanan }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="detailModal{{ $uoj->id_pesanan }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                           <div class="modal-content" style="color: black">
                             <div class="modal-header">
@@ -89,15 +89,15 @@
                                     <div class="d-flex mb-3">
                                         <div style="width: 100%" class="me-3">
                                             <label for="inputNama" class="form-label">Nama</label>
-                                            <input type="text" id="inputNama" class="form-control" value="{{ $uo->nama_pemesan }}"/>
+                                            <input type="text" id="inputNama" class="form-control" value="{{ $uoj->nama_pemesan }}"/>
                                         </div>
                                         <div style="width: 100%" class="ms-3">
                                             <label for="inputKategori" class="form-label"
                                                 >Kategori</label
                                             >
                                             <select id="inputKategori" class="form-select">
-                                                <option value="1" {{ $uo->kategori_id == 1 ? 'selected' : '' }}>Jahit</option>
-                                                <option value="2" {{ $uo->kategori_id == 2 ? 'selected' : '' }}>Vermak</option>
+                                                <option value="1" {{ $uoj->kategori_id == 1 ? 'selected' : '' }}>Jahit</option>
+                                                <option value="2" {{ $uoj->kategori_id == 2 ? 'selected' : '' }}>Vermak</option>
                                             </select>
                                             
                                         </div>
@@ -105,13 +105,13 @@
                                     <div class="d-flex mb-3">
                                         <div style="width: 100%" class="me-3">
                                             <label for="inputPesanan" class="form-label">Kode Pesanan</label>
-                                            <input type="text" id="inputPesanan" class="form-control" value="{{ $uo->kode_pesanan }}" />
+                                            <input type="text" id="inputPesanan" class="form-control" value="{{ $uoj->kode_pesanan }}" />
                                         </div>
                                         <div style="width: 100%" class="ms-3">
                                             <label for="inputHarga" class="form-label">Harga</label>
                                             <div class="input-group">
                                                 <span class="input-group-text">Rp.</span>
-                                                <input type="text" id="inputHarga" class="form-control" value="{{ $uo->harga }}"/>
+                                                <input type="text" id="inputHarga" class="form-control" value="{{ $uoj->harga }}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@
                                             id="inputCatatan"
                                             class="form-control"
                                             
-                                        >{{ $uo->notes }}</textarea>
+                                        >{{ $uoj->notes }}</textarea>
                                     </div>
                                     <button
                                         class="btn"
