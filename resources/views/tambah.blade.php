@@ -17,11 +17,10 @@
                     <label for="inputKategori" class="form-label"
                         >Kategori</label
                     >
-                    <input
-                        type="text"
-                        id="inputKategori"
-                        class="form-control"
-                    />
+                    <select id="inputKategori" class="form-select">
+                        <option value="1">Jahit</option>
+                        <option value="2">Vermak</option>
+                    </select>
                 </div>
             </div>
             <div class="d-flex mb-3">

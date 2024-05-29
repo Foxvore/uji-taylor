@@ -21,6 +21,8 @@ class AdminController
         $jumlah_vermak = LogSelesai::whereHas('pesanan', function ($query) {
             $query->where('kategori_id', 2);
         })->with('pesanan')->get()->count();
+        
+        $dummy_data = Pesanan::all();
 
         // return response()->json();
 
@@ -29,6 +31,7 @@ class AdminController
             'p_vermak' => $pemasukan_vermak,
             'j_pembuatan' => $jumlah_pembuatan,
             'j_vermak' => $jumlah_vermak,
+            'data' => $dummy_data,
         ]);
     }
 
