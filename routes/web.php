@@ -26,4 +26,4 @@ Route::get('/admin-edit', function () {
     return view('edit');
 });
 
-Route::get('/test', [PesananController::class, 'test']);
+Route::get('/test', [PesananController::class, 'getUncompletedPesanan']);

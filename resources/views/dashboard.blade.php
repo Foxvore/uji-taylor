@@ -33,7 +33,32 @@
         </div>
         <div class="tabel-histori">
             <div class="fs-2" style="font-weight: 500">Histori Pemesanan</div>
-            <div class="tabel-dumb">Ini tabel nanti gatau kalo gada datanya gimana</div>
+            <div class="tabel-dumb">
+                <table id="pesanan-table" class="table" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama</th>
+                            <th>Kontak</th>
+                            <th>Kategori</th>
+                            <th>Pesanan</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($i = 0; $i<5; $i++)   
+                        <tr>
+                           <td>disini nomoronya</td>
+                           <td>Nanti namanya disin</td>
+                           <td>kontaknya disini</td>
+                           <td>kategorinya disini</td>
+                           <td>pesanannyadisini</td>
+                           <td>ini button niatnya</td> 
+                        </tr>
+                        @endfor
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
