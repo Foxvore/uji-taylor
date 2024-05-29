@@ -56,11 +56,10 @@
                                 Rp. 34.000
                             </div>
                             <div class="d-flex me-3">
-                                <a href="#" class="me-2">
-                                    <button class="btn btn-warning">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                </a>
+                                <button type="button" class="btn btn-warning" style="color: white" data-bs-toggle="modal" data-bs-target="#detailModal{{ $uo->id_pesanan }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                
                                 <a href="#" class="me-2">
                                     <button class="btn btn-danger">
                                         <i class="fa-solid fa-trash"></i>
@@ -73,7 +72,67 @@
                                 </a>
                             </div>
                         </div>
-                    </div>   
+                    </div>
+                    {{-- modal --}}
+                    <div class="modal fade" id="detailModal{{ $uo->id_pesanan }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content" style="color: black">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-2" id="exampleModalLabel">Edit Pesanan</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <div class="d-flex mb-3">
+                                        <div style="width: 100%" class="me-3">
+                                            <label for="inputNama" class="form-label">Nama</label>
+                                            <input type="text" id="inputNama" class="form-control" value="{{ $uo->nama_pemesan }}"/>
+                                        </div>
+                                        <div style="width: 100%" class="ms-3">
+                                            <label for="inputKategori" class="form-label"
+                                                >Kategori</label
+                                            >
+                                            <select id="inputKategori" class="form-select">
+                                                <option value="1" {{ $uo->kategori_id == 1 ? 'selected' : '' }}>Jahit</option>
+                                                <option value="2" {{ $uo->kategori_id == 2 ? 'selected' : '' }}>Vermak</option>
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div style="width: 100%" class="me-3">
+                                            <label for="inputPesanan" class="form-label">Kode Pesanan</label>
+                                            <input type="text" id="inputPesanan" class="form-control" value="{{ $uo->kode_pesanan }}" />
+                                        </div>
+                                        <div style="width: 100%" class="ms-3">
+                                            <label for="inputHarga" class="form-label">Harga</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp.</span>
+                                                <input type="text" id="inputHarga" class="form-control" value="{{ $uo->harga }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="inputCatatan" class="form-label">Catatan</label>
+                                        <textarea
+                                            name=""
+                                            id="inputCatatan"
+                                            class="form-control"
+                                            
+                                        >{{ $uo->notes }}</textarea>
+                                    </div>
+                                    <button
+                                        class="btn"
+                                        style="width: 100%; background-color: var(--color-4); color: white"
+                                    >
+                                        Konfirmasi
+                                    </button>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{-- modal --}}   
                     @endforeach
                 </div>
             </div>
