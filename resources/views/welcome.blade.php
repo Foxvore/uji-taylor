@@ -10,10 +10,10 @@
       <div class="d-flex justify-content-center mt-5" style="width: 100%; height: 3rem;">
         <div class="d-flex ps-4" style="background-color: white; border-radius: 20px; width: 100% ">
           <div style="height: 100%; width: 100%" class="d-flex align-items-center">
-            <input type="text" name="" id="" placeholder="Cari Nama..."  class="input-cari">
+            <input type="text" id="kodePesananForm" placeholder="Cari Nama..."  class="input-cari">
           </div>
           <div class="tombol-cari">
-            <button style=" border: none; background: transparent; width: 100%; height: 100%;">
+            <button onclick="cariPesanan()" style=" border: none; background: transparent; width: 100%; height: 100%;">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
@@ -22,4 +22,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  function cariPesanan(){
+    var parameter = document.getElementById('kodePesananForm').value;
+    var url = "{{ route('search.pesanan', ':parameter') }}";
+    url = url.replace(':parameter', parameter);
+    window.location.href = url;
+  }
+</script>
 @endsection

@@ -23,8 +23,8 @@ class PesananController
      */
     public function getPesananByCode($kodePesanan)
     {
-        $pesanan = Pesanan::where('kode_pesanan', $kodePesanan)->get();
-        dd($pesanan);
+        $pesanan = Pesanan::where('kode_pesanan', $kodePesanan)->first();
+        return view('cari', compact('pesanan'));
     }
 
     /**

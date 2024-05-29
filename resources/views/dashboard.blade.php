@@ -50,8 +50,8 @@
                         <tr>
                            <td>{{ $loop->iteration }}</td>
                            <td>{{ $data->nama_pemesan }}</td>
-                           <td>kontaknya disini</td>
-                           <td>20323-32-31231</td>
+                           <td>{{ $data->kontak }}</td>
+                           <td>{{ $data->estimasi }}</td>
                            <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal{{ $data->id_pesanan }}">
                                     Detail

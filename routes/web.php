@@ -27,3 +27,5 @@ Route::get('/admin-edit', function () {
 });
 
 Route::get('/test', [PesananController::class, 'getUncompletedPesanan']);
+
+Route::get('/cari-{kodePesanan}', [PesananController::class, 'getPesananByCode'])->name('search.pesanan');
