@@ -33,7 +33,7 @@
                                 <div class="d-flex" style="height: 9rem">
                                     <div class="card-kiri ps-4">
                                         <div class="fs-2 semi-bold text-nowrap"
-                                            style="width: 115px; text-overflow: ellipsis; overflow: hidden;">
+                                            style="width: 100%; text-overflow: ellipsis; overflow: hidden;">
                                             {{ $uoj->nama_pemesan }}
                                         </div>
                                         <div class="light text-capitalize">Kode Pesanan</div>
