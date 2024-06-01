@@ -21,7 +21,7 @@ class AdminController
         $jumlah_vermak = LogSelesai::whereHas('pesanan', function ($query) {
             $query->where('kategori_id', 2);
         })->with('pesanan')->get()->count();
-        
+
         $dummy_data = Pesanan::all();
 
         // return response()->json($jahit->total_pemasukan);
@@ -66,5 +66,38 @@ class AdminController
             'uov' => $uncompleted_order_vermak,
             'cov' => $completed_order_vermak,
         ]);
+    }
+
+    public function inputView()
+    {
+        return view('tambah');
+    }
+
+    public function storePesanan(Request $request)
+    {
+        $last_pesanan = Pesanan::orderBy('id_pesanan', 'desc')->first('id_pesanan');
+        $last_kode = $last_pesanan ? $last_pesanan->id_pesanan : 0;
+
+        $request->validate([
+            'kategori_id' => 'required',
+            'nama_pemesan' => 'required',
+            'kontak' => 'required',
+            'harga' => 'required',
+            'notes' => 'required',
+            'estimasi' => 'required',
+        ]);
+
+        Pesanan::create([
+            'kategori_id' => $request->kategori_id,
+            'kode_pesanan' => 'PES-' . ($last_kode + 1),
+            'nama_pemesan' => $request->nama_pemesan,
+            'kontak' => $request->kontak,
+            'harga' => $request->harga,
+            'notes' => $request->notes,
+            'status_selesai' => false,
+            'estimasi' => $request->estimasi,
+        ]);
+
+        return redirect('/admin/pesanan')->with('success', 'Pesanan baru berhasil dibuat!');;
     }
 }
