@@ -17,11 +17,10 @@ Route::post('/login', [AuthController::class, 'authLogin']);
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
     Route::get('/pesanan', [AdminController::class, 'getPesanan']);
+    Route::get('/view-tambah', [AdminController::class, 'inputView']);
+    Route::post('/store', [AdminController::class, 'storePesanan']);
 });
 
-Route::get('/admin-tambah', function () {
-    return view('tambah');
-});
 Route::get('/admin-edit', function () {
     return view('edit');
 });

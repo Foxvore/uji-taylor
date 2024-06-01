@@ -14,13 +14,12 @@ class Pesanan extends Model
     protected $primaryKey = 'id_pesanan';
     protected $fillable = [
         'kategori_id',
+        'kode_pesanan',
         'nama_pemesan',
         'kontak',
         'harga',
-        'referensi',
         'notes',
         'status_selesai',
-        'tanggal_pesanan',
         'estimasi',
     ];
 

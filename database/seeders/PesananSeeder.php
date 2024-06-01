@@ -31,7 +31,6 @@ class PesananSeeder extends Seeder
                 'harga' => $faker->numberBetween(10000, 100000),
                 'notes' => $faker->paragraph,
                 'status_selesai' => false,
-                'tanggal_pesanan' => $faker->date,
                 'estimasi' => $faker->date,
                 'created_at' => $createdAt,
                 'updated_at' => $updatedAt,
