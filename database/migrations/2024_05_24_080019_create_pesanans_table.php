@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('harga');
             $table->string('notes')->nullable();
             $table->boolean('status_selesai');
-            $table->date('tanggal_pesanan');
             $table->date('estimasi');
             $table->timestamps();
         });
