@@ -98,6 +98,23 @@ class AdminController
             'estimasi' => $request->estimasi,
         ]);
 
-        return redirect('/admin/pesanan')->with('success', 'Pesanan baru berhasil dibuat!');;
+        return to_route('pesanan.data')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    public function completePesanan($id_pesanan)
+    {
+        $pesanan = Pesanan::findOrFail($id_pesanan);
+        $pesanan->update([
+            'kategori_id' => $pesanan->kategori_id,
+            'kode_pesanan' => $pesanan->kode_pesanan,
+            'nama_pemesan' => $pesanan->nama_pemesan,
+            'kontak' => $pesanan->kontak,
+            'harga' => $pesanan->harga,
+            'notes' => $pesanan->notes,
+            'status_selesai' => true,
+            'estimasi' => $pesanan->estimasi,
+        ]);
+
+        return redirect('/admin/pesanan');
     }
 }
