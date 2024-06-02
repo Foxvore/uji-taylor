@@ -26,7 +26,7 @@
             <div>
                 <div class="fs-5">Hello, Username</div>
                 <div class="d-flex justify-content-end">
-                    <a href="/">
+                    <a href="/logout" onclick="return confirm('Ingin logout?')">
                         <button class="tombol-logout">Keluar</button>
                     </a>
                 </div>

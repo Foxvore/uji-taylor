@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
         $createdAt = Carbon::today()->toDateString();
         $updatedAt = Carbon::today()->toDateString();
 
-        Admin::insert([
+        User::insert([
             'name' => 'Foxvorism',
             'username' => 'maul',
             'password' => Hash::make('rahasia'),

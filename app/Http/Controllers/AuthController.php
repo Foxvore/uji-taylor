@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,23 +17,32 @@ class AuthController
         return view('login');
     }
 
-    public function authLogin(Request $request)
+    public function authenticate(Request $request): RedirectResponse
     {
-        // Validate the form data
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+        $credential = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
         ]);
 
-        $admin = DB::table('m_admin')->where('username', $request->username)->first();
+        if (Auth::attempt($credential)) {
+            $request->session()->regenerate();
 
-        if ($admin && Hash::check($request->password, $admin->password)) {
-            // Authentication passed, create session manually
-            Auth::loginUsingId($admin->id_admin);
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/admin/dashboard')->with('login_success', true);
         }
 
-        // If the login attempt failed, redirect back with an error message
-        return redirect()->back()->with('error', 'Invalid credentials')->withInput();
+        return back()->withErrors([
+            'error' => 'Username atau password salah',
+        ])->onlyInput('username');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

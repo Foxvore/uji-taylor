@@ -98,7 +98,7 @@ class AdminController
             'estimasi' => $request->estimasi,
         ]);
 
-        return to_route('pesanan.data')->with('success', 'Data berhasil ditambahkan');
+        return to_route('pesanan.data')->with('success', 'Pesanan berhasil ditambahkan');
     }
 
     public function completePesanan($id_pesanan)
@@ -115,6 +115,35 @@ class AdminController
             'estimasi' => $pesanan->estimasi,
         ]);
 
-        return redirect('/admin/pesanan');
+        return to_route('pesanan.data')->with('success', 'Pesanan selesai');
+    }
+
+    public function updatePesanan(Request $request, $id_pesanan)
+    {
+        $pesanan = Pesanan::findOrFail($id_pesanan);
+        $pesanan->update([
+            'kategori_id' => $request->kategori_id,
+            'kode_pesanan' => $pesanan->kode_pesanan,
+            'nama_pemesan' => $request->nama_pemesan,
+            'kontak' => $request->kontak,
+            'harga' => $request->harga,
+            'notes' => $request->notes,
+            'status_selesai' => false,
+            'estimasi' => $request->estimasi,
+        ]);
+
+        return to_route('pesanan.data')->with('success', 'Pesanan berhasil diubah');
+    }
+
+    public function destroyPesanan($id_pesanan)
+    {
+        $pesanan = Pesanan::findOrFail($id_pesanan);
+        if ($pesanan != null) {
+            $pesanan->delete();
+        } else {
+            return to_route('pesanan.data')->with('error', 'Pesanan gagal dihapus');
+        }
+
+        return to_route('pesanan.data')->with('success', 'Pesanan berhasil dihapus');
     }
 }
