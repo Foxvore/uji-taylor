@@ -22,7 +22,9 @@ class AdminController
             $query->where('kategori_id', 2);
         })->with('pesanan')->get()->count();
 
-        $data_selesai = LogSelesai::with('pesanan')->get();
+        $data_selesai = LogSelesai::with('pesanan.kategori')->get();
+
+        // return response()->json($data_selesai);
 
         return view('dashboard', [
             'jahit' => $jahit,
