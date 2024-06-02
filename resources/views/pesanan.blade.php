@@ -201,8 +201,8 @@
                                     Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
                                 </div>
                             </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
             <div id="section-vermak" style="display: none">
@@ -279,7 +279,8 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('pesanan.update', $uov->id_pesanan) }}" method="post">
+                                            <form action="{{ route('pesanan.update', $uov->id_pesanan) }}"
+                                                method="post">
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="inputNama" class="form-label">Nama Pemesan</label>
@@ -294,11 +295,14 @@
                                                     </div>
                                                     <div style="width: 100%" class="ms-3">
                                                         <label for="inputKategori" class="form-label">Kategori</label>
-                                                        <select id="inputKategori" class="form-select" name="kategori_id">
+                                                        <select id="inputKategori" class="form-select"
+                                                            name="kategori_id">
                                                             <option value="1"
-                                                                {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit</option>
+                                                                {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
+                                                            </option>
                                                             <option value="2"
-                                                                {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak</option>
+                                                                {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -366,16 +370,20 @@
                                         <div class="catatan me-3 mt-1">
                                             <div class="isi-catatan">Misalnya ini panjang panjangMisalnya ini panjang
                                                 panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya
+                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
+                                                anjangMisalnya
                                                 ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
                                                 panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya
+                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
+                                                anjangMisalnya
                                                 ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
                                                 panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya
+                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
+                                                anjangMisalnya
                                                 ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
                                                 panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya
+                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
+                                                panjangMisalnya
                                                 ini panjang panjangMisalnya ini panjang panjang</div>
                                         </div>
                                     </div>
