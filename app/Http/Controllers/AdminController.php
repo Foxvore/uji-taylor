@@ -22,16 +22,14 @@ class AdminController
             $query->where('kategori_id', 2);
         })->with('pesanan')->get()->count();
 
-        $dummy_data = Pesanan::all();
-
-        // return response()->json($jahit->total_pemasukan);
+        $data_selesai = LogSelesai::with('pesanan')->get();
 
         return view('dashboard', [
             'jahit' => $jahit,
             'vermak' => $vermak,
             'j_jahit' => $jumlah_jahit,
             'j_vermak' => $jumlah_vermak,
-            'data' => $dummy_data,
+            'data_selesai' => $data_selesai,
         ]);
     }
 
