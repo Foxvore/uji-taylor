@@ -9,7 +9,7 @@
 <div class="card-tambah">
         @if ($pesanan == null)
             <div>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mb-2">
                     <div class="title-tambah fw-bold fs-2">Tidak ada pesanan</div>
                     <a href="/">
                         <button class="btn btn-danger">

@@ -35,7 +35,7 @@
         <div class="tabel-histori">
             <div class="fs-2" style="font-weight: 500">Histori Pemesanan</div>
             <div class="tabel-dumb">
-                <table id="pesanan-table" class="table" style="width: 100%">
+                <table id="pesanan-table" class="table stripe hover" style="width: 100%">
                     <thead>
                         <tr>
                             <th>No.</th>
