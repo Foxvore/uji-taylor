@@ -296,21 +296,15 @@
                                                     </div>
                                                     <div style="width: 100%" class="ms-3">
                                                         <label for="inputKategori" class="form-label">Kategori</label>
-                                                        <select id="inputKategori" class="form-select"
-                                                            name="kategori_id">
-                                                            <select id="inputKategori" class="form-select"
-                                                                name="kategori_id">
-                                                                <option value="1"
-                                                                    {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
-                                                                </option>
+                                                        <select id="inputKategori" class="form-select" name="kategori_id">
+                                                            <option value="1"
                                                                 {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
-                                                                </option>
-                                                                <option value="2"
-                                                                    {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
-                                                                </option>
+                                                            </option>
+                                                            <option value="2"
                                                                 {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
-                                                                </option>
-                                                            </select>
+                                                            </option>
+                                                            
+                                                        </select>
 
                                                     </div>
                                                 </div>
