@@ -2,6 +2,13 @@
 
 @section('content')
     <x-navbar-admin></x-navbar-admin>
+
+    @if (session('success'))
+        <script>
+            alert("Data berhasil ditambahkan")
+        </script>
+    @endif
+
     <div class="bg-polos">
         <div class="isi d-flex justify-content-center">
             <div>
@@ -59,16 +66,17 @@
                                         Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
                                     </div>
                                     <div class="d-flex me-3">
-                                        <button type="button" class="btn btn-warning me-2" style="color: white"
-                                            data-bs-toggle="modal" data-bs-target="#detailModal{{ $uoj->id_pesanan }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
                                         <a href="#" class="me-2">
                                             <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </a>
-                                        <a href="#">
+                                        <button type="button" class="btn btn-warning me-2" style="color: white"
+                                            data-bs-toggle="modal" data-bs-target="#detailModal{{ $uoj->id_pesanan }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <a href="/admin/complete/{{ $uoj->id_pesanan }}"
+                                            onClick="return confirm('Pesana selesai?')">
                                             <button class="btn btn-success">
                                                 <i class="fa-solid fa-check"></i>
                                             </button>
@@ -235,16 +243,17 @@
                                     Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
                                 </div>
                                 <div class="d-flex me-3">
-                                    <button type="button" class="btn btn-warning me-2" style="color: white"
-                                        data-bs-toggle="modal" data-bs-target="#detailModal{{ $uov->id_pesanan }}">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
                                     <a href="#" class="me-2">
                                         <button class="btn btn-danger">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </a>
-                                    <a href="#">
+                                    <button type="button" class="btn btn-warning me-2" style="color: white"
+                                        data-bs-toggle="modal" data-bs-target="#detailModal{{ $uoj->id_pesanan }}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <a href="/admin/complete/{{ $uoj->id_pesanan }}"
+                                        onClick="return confirm('Pesana selesai?')">
                                         <button class="btn btn-success">
                                             <i class="fa-solid fa-check"></i>
                                         </button>
