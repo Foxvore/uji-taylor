@@ -15,10 +15,11 @@ Route::post('/login', [AuthController::class, 'authLogin']);
 
 // Admin Dashboard Routes
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard']);
-    Route::get('/pesanan', [AdminController::class, 'getPesanan']);
-    Route::get('/view-tambah', [AdminController::class, 'inputView']);
-    Route::post('/store', [AdminController::class, 'storePesanan']);
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('pesanan.log');
+    Route::get('/pesanan', [AdminController::class, 'getPesanan'])->name('pesanan.data');
+    Route::get('/view-tambah', [AdminController::class, 'inputView'])->name('pesanan.tambah');
+    Route::post('/store', [AdminController::class, 'storePesanan'])->name('pesanan.store');
+    Route::get('/complete/{id}', [AdminController::class, 'completePesanan'])->name('pesanan.complete');
 });
 
 Route::get('/admin-edit', function () {
