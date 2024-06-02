@@ -39,10 +39,10 @@
                     <table id="pesanan-table" class="table stripe hover data-table" style="width: 100%">
                         <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>Nama</th>
-                                <th>Kontak</th>
-                                <th>Tanggal Selesai</th>
+                                <th>No</th>
+                                <th>Kode Pesanan</th>
+                                <th>Nama Pemesan</th>
+                                <th>Keterangan</th>
                                 <th>Detail</th>
                             </tr>
                         </thead>
@@ -50,9 +50,9 @@
                             @foreach ($data_selesai as $ds)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $ds->nama_pemesan }}</td>
-                                    <td>{{ $ds->kontak }}</td>
-                                    <td>{{ $ds->estimasi }}</td>
+                                    <td>{{ $ds->pesanan->kode_pesanan }}</td>
+                                    <td>{{ $ds->pesanan->nama_pemesan }}</td>
+                                    <td>{{ $ds->keterangan }}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#detailModal{{ $ds->id_pesanan }}">
@@ -75,29 +75,30 @@
                                                     <div style="width: 100%" class="me-3">
                                                         <label for="inputNama" class="form-label">Nama</label>
                                                         <input type="text" id="inputNama" class="form-control"
-                                                            readonly />
+                                                            value="{{ $ds->pesanan->nama_pemesan }}" readonly />
                                                     </div>
                                                     <div style="width: 100%" class="ms-3">
                                                         <label for="inputKategori" class="form-label">Kategori</label>
-                                                        <input type="text" id="inputKategori" class="form-control"
-                                                            readonly />
+                                                        <input type="text" id="inputKategori"
+                                                            class="form-control text-capitalize"
+                                                            value="{{ $ds->pesanan->kategori->nama_kategori }}" readonly />
                                                     </div>
                                                 </div>
                                                 <div class="d-flex mb-3">
                                                     <div style="width: 100%" class="me-3">
-                                                        <label for="inputPesanan" class="form-label">Kode Pesanan</label>
+                                                        <label for="inputPesanan" class="form-label">Kontak</label>
                                                         <input type="text" id="inputPesanan" class="form-control"
-                                                            readonly />
+                                                            value="{{ $ds->pesanan->kontak }}" readonly />
                                                     </div>
                                                     <div style="width: 100%" class="ms-3">
                                                         <label for="inputHarga" class="form-label">Harga</label>
                                                         <input type="text" id="inputHarga" class="form-control"
-                                                            readonly />
+                                                            value="{{ $ds->pesanan->harga }}" readonly />
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
                                                     <label for="inputCatatan" class="form-label">Catatan</label>
-                                                    <textarea name="" id="inputCatatan" class="form-control" readonly></textarea>
+                                                    <textarea name="" id="inputCatatan" class="form-control" readonly>{{ $ds->pesanan->notes }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
