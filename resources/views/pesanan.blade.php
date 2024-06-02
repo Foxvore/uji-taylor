@@ -5,7 +5,13 @@
 
     @if (session('success'))
         <script>
-            alert("Data berhasil ditambahkan")
+            alert({{ session('success') }})
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            alert({{ session('error') }})
         </script>
     @endif
 
@@ -66,7 +72,8 @@
                                         Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
                                     </div>
                                     <div class="d-flex me-3">
-                                        <a href="#" class="me-2">
+                                        <a href="{{ route('pesanan.destroy', $uoj->id_pesanan) }}"
+                                            onClick="return confirm('Ingin hapus pesanan?')" class="me-2">
                                             <button class="btn btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
@@ -75,8 +82,8 @@
                                             data-bs-toggle="modal" data-bs-target="#detailModal{{ $uoj->id_pesanan }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        <a href="/admin/complete/{{ $uoj->id_pesanan }}"
-                                            onClick="return confirm('Pesana selesai?')">
+                                        <a href="{{ route('pesanan.complete', $uoj->id_pesanan) }}"
+                                            onClick="return confirm('Pesana sudah selesai?')">
                                             <button class="btn btn-success">
                                                 <i class="fa-solid fa-check"></i>
                                             </button>
@@ -95,21 +102,23 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="">
+                                            <form action="{{ route('pesanan.update', $uoj->id_pesanan) }}" method="post">
+                                                @csrf
                                                 <div class="mb-3">
-                                                    <label for="inputNama" class="form-label">Nama</label>
+                                                    <label for="inputNama" class="form-label">Nama Pemesan</label>
                                                     <input type="text" id="inputNama" class="form-control"
-                                                        value="{{ $uoj->nama_pemesan }}">
+                                                        name="nama_pemesan" value="{{ $uoj->nama_pemesan }}">
                                                 </div>
                                                 <div class="d-flex mb-3">
                                                     <div style="width: 100%" class="me-3">
-                                                        <label for="inputKode" class="form-label">Kode Pesanan</label>
+                                                        <label for="inputKode" class="form-label">Kontak</label>
                                                         <input type="text" id="inputKode" class="form-control"
-                                                            value="{{ $uoj->kode_pesanan }}" readonly />
+                                                            name="kontak" value="{{ $uoj->kontak }}" />
                                                     </div>
                                                     <div style="width: 100%" class="ms-3">
                                                         <label for="inputKategori" class="form-label">Kategori</label>
-                                                        <select id="inputKategori" class="form-select">
+                                                        <select id="inputKategori" class="form-select"
+                                                            name="kategori_id">
                                                             <option value="1"
                                                                 {{ $uoj->kategori_id == 1 ? 'selected' : '' }}>Jahit
                                                             </option>
@@ -124,25 +133,23 @@
                                                     <div style="width: 100%" class="me-3">
                                                         <label for="inputDate" class="form-label">Estimasi</label>
                                                         <input type="date" id="inputDate" class="form-control"
-                                                            value="{{ $uoj->estimasi }}" />
+                                                            value="{{ $uoj->estimasi }}" name="estimasi" />
                                                     </div>
                                                     <div style="width: 100%" class="ms-3">
                                                         <label for="inputHarga" class="form-label">Harga</label>
                                                         <div class="input-group">
                                                             <span class="input-group-text">Rp.</span>
                                                             <input type="text" id="inputHarga" class="form-control"
-                                                                value="{{ $uoj->harga }}" />
+                                                                value="{{ $uoj->harga }}" name="harga" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-4">
                                                     <label for="inputCatatan" class="form-label">Catatan</label>
-                                                    <textarea name="" id="inputCatatan" class="form-control">{{ $uoj->notes }}</textarea>
+                                                    <textarea id="inputCatatan" class="form-control" name="notes">{{ $uoj->notes }}</textarea>
                                                 </div>
-                                                <button class="btn"
+                                                <input type="submit" class="btn" value="Konfirmasi"
                                                     style="width: 100%; background-color: var(--color-4); color: white">
-                                                    Konfirmasi
-                                                </button>
                                             </form>
                                         </div>
                                     </div>
@@ -243,17 +250,18 @@
                                     Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
                                 </div>
                                 <div class="d-flex me-3">
-                                    <a href="#" class="me-2">
+                                    <a href="{{ route('pesanan.destroy', $uov->id_pesanan) }}"
+                                        onClick="return confirm('Ingin hapus pesanan?')" class="me-2">
                                         <button class="btn btn-danger">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </a>
                                     <button type="button" class="btn btn-warning me-2" style="color: white"
-                                        data-bs-toggle="modal" data-bs-target="#detailModal{{ $uoj->id_pesanan }}">
+                                        data-bs-toggle="modal" data-bs-target="#detailModal{{ $uov->id_pesanan }}">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
-                                    <a href="/admin/complete/{{ $uoj->id_pesanan }}"
-                                        onClick="return confirm('Pesana selesai?')">
+                                    <a href="{{ route('pesanan.complete', $uov->id_pesanan) }}"
+                                        onClick="return confirm('Pesana sudah selesai?')">
                                         <button class="btn btn-success">
                                             <i class="fa-solid fa-check"></i>
                                         </button>
@@ -272,25 +280,28 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="">
+                                        <form action="{{ route('pesanan.update', $uov->id_pesanan) }}" method="post">
+                                            @csrf
                                             <div class="mb-3">
-                                                <label for="inputNama" class="form-label">Nama</label>
+                                                <label for="inputNama" class="form-label">Nama Pemesan</label>
                                                 <input type="text" id="inputNama" class="form-control"
-                                                    value="{{ $uov->nama_pemesan }}">
+                                                    name="nama_pemesan" value="{{ $uov->nama_pemesan }}">
                                             </div>
                                             <div class="d-flex mb-3">
                                                 <div style="width: 100%" class="me-3">
-                                                    <label for="inputKode" class="form-label">Kode Pesanan</label>
+                                                    <label for="inputKode" class="form-label">Kontak</label>
                                                     <input type="text" id="inputKode" class="form-control"
-                                                        value="{{ $uov->kode_pesanan }}" readonly />
+                                                        name="kontak" value="{{ $uov->kontak }}" />
                                                 </div>
                                                 <div style="width: 100%" class="ms-3">
                                                     <label for="inputKategori" class="form-label">Kategori</label>
-                                                    <select id="inputKategori" class="form-select">
+                                                    <select id="inputKategori" class="form-select" name="kategori_id">
                                                         <option value="1"
-                                                            {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit</option>
+                                                            {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
+                                                        </option>
                                                         <option value="2"
-                                                            {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak</option>
+                                                            {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
+                                                        </option>
                                                     </select>
 
                                                 </div>
@@ -299,25 +310,23 @@
                                                 <div style="width: 100%" class="me-3">
                                                     <label for="inputDate" class="form-label">Estimasi</label>
                                                     <input type="date" id="inputDate" class="form-control"
-                                                        value="{{ $uov->estimasi }}" />
+                                                        value="{{ $uov->estimasi }}" name="estimasi" />
                                                 </div>
                                                 <div style="width: 100%" class="ms-3">
                                                     <label for="inputHarga" class="form-label">Harga</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text">Rp.</span>
                                                         <input type="text" id="inputHarga" class="form-control"
-                                                            value="{{ $uov->harga }}" />
+                                                            value="{{ $uov->harga }}" name="harga" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="mb-4">
                                                 <label for="inputCatatan" class="form-label">Catatan</label>
-                                                <textarea name="" id="inputCatatan" class="form-control">{{ $uov->notes }}</textarea>
+                                                <textarea id="inputCatatan" class="form-control" name="notes">{{ $uov->notes }}</textarea>
                                             </div>
-                                            <button class="btn"
+                                            <input type="submit" class="btn" value="Konfirmasi"
                                                 style="width: 100%; background-color: var(--color-4); color: white">
-                                                Konfirmasi
-                                            </button>
                                         </form>
                                     </div>
                                 </div>
