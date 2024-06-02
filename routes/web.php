@@ -20,6 +20,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/view-tambah', [AdminController::class, 'inputView'])->name('pesanan.tambah');
     Route::post('/store', [AdminController::class, 'storePesanan'])->name('pesanan.store');
     Route::get('/complete/{id}', [AdminController::class, 'completePesanan'])->name('pesanan.complete');
+    Route::post('/update/{id}', [AdminController::class, 'updatePesanan'])->name('pesanan.update');
+    Route::get('/destroy/{id}', [AdminController::class, 'destroyPesanan'])->name('pesanan.destroy');
 });
 
 Route::get('/admin-edit', function () {
