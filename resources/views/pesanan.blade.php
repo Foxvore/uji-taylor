@@ -202,7 +202,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        @endforeach
                     </div>
                 </div>
             </div>
@@ -257,7 +256,8 @@
                                             </button>
                                         </a>
                                         <button type="button" class="btn btn-warning me-2" style="color: white"
-                                            data-bs-toggle="modal" data-bs-target="#detailModalVermak{{ $uov->id_pesanan }}">
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#detailModalVermak{{ $uov->id_pesanan }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         <a href="{{ route('pesanan.complete', $uov->id_pesanan) }}"
@@ -298,19 +298,19 @@
                                                         <label for="inputKategori" class="form-label">Kategori</label>
                                                         <select id="inputKategori" class="form-select"
                                                             name="kategori_id">
-                                                        <select id="inputKategori" class="form-select"
-                                                            name="kategori_id">
-                                                            <option value="1"
+                                                            <select id="inputKategori" class="form-select"
+                                                                name="kategori_id">
+                                                                <option value="1"
+                                                                    {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
+                                                                </option>
                                                                 {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
-                                                            </option>
-                                                                {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
-                                                            </option>
-                                                            <option value="2"
+                                                                </option>
+                                                                <option value="2"
+                                                                    {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
+                                                                </option>
                                                                 {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
-                                                            </option>
-                                                                {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
-                                                            </option>
-                                                        </select>
+                                                                </option>
+                                                            </select>
 
                                                     </div>
                                                 </div>
