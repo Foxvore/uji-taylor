@@ -6,7 +6,7 @@
         <div class="card-tambah">
             <div class="title-tambah fw-bold fs-2">Tambah Pesanan</div>
             <hr />
-            <form action="/admin/store" method="POST">
+            <form action="{{ route('pesanan.store') }}" method="POST">
                 @csrf
                 <div style="width: 100%" class="mb-3">
                     <label for="inputNama" class="form-label">Nama Pemesan</label>
