@@ -24,9 +24,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
-    <script>
-        new DataTable('#pesanan-table')
-    </script>
+    <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
+    <script src="{{ asset('js/table.js') }}"></script>
 </body>
 
 </html>
