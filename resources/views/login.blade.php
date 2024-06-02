@@ -14,7 +14,7 @@
                 <div class="fs-4 mb-1">Masuk ke akunmu</div>
                 <div class="fw-light">Untuk memanajemen data anda perlu masuk terlebih dahulu</div>
                 <div class="my-4">
-                    <form action="/login" method="POST">
+                    <form action="/login" method="post">
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputUsername1" class="form-label">Nama Pengguna</label>
