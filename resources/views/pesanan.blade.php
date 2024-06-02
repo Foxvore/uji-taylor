@@ -198,11 +198,11 @@
                                 </div>
                                 <hr class="mx-3 my-3">
                                 <div class="pb-3 ps-4 fs-4">
-                                    Rp. {{ number_format($uoj->harga, 0, ',', '.') }}
+                                    Rp. {{ number_format($coj->harga, 0, ',', '.') }}
                                 </div>
                             </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
             <div id="section-vermak" style="display: none">
@@ -256,7 +256,7 @@
                                             </button>
                                         </a>
                                         <button type="button" class="btn btn-warning me-2" style="color: white"
-                                            data-bs-toggle="modal" data-bs-target="#detailModal{{ $uoj->id_pesanan }}">
+                                            data-bs-toggle="modal" data-bs-target="#detailModalVermak{{ $uov->id_pesanan }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         <a href="{{ route('pesanan.complete', $uov->id_pesanan) }}"
@@ -269,7 +269,7 @@
                                 </div>
                             </div>
                             {{-- modal --}}
-                            <div class="modal fade" id="detailModal{{ $uov->id_pesanan }}" tabindex="-1"
+                            <div class="modal fade" id="detailModalVermak{{ $uov->id_pesanan }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content" style="color: black">
@@ -294,12 +294,16 @@
                                                     </div>
                                                     <div style="width: 100%" class="ms-3">
                                                         <label for="inputKategori" class="form-label">Kategori</label>
-                                                        <select id="inputKategori" class="form-select" name="kategori_id">
+                                                        <select id="inputKategori" class="form-select"
+                                                            name="kategori_id">
                                                             <option value="1"
-                                                                {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit</option>
+                                                                {{ $uov->kategori_id == 1 ? 'selected' : '' }}>Jahit
+                                                            </option>
                                                             <option value="2"
-                                                                {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak</option>
+                                                                {{ $uov->kategori_id == 2 ? 'selected' : '' }}>Vermak
+                                                            </option>
                                                         </select>
+
                                                     </div>
                                                 </div>
                                                 <div class="d-flex mb-3">
@@ -321,10 +325,8 @@
                                                     <label for="inputCatatan" class="form-label">Catatan</label>
                                                     <textarea id="inputCatatan" class="form-control" name="notes">{{ $uov->notes }}</textarea>
                                                 </div>
-                                                <button class="btn"
+                                                <input type="submit" class="btn" value="Konfirmasi"
                                                     style="width: 100%; background-color: var(--color-4); color: white">
-                                                    Konfirmasi
-                                                </button>
                                             </form>
                                         </div>
                                     </div>
@@ -349,40 +351,31 @@
                                 </div>
                                 <div class="d-flex" style="height: 9rem">
                                     <div class="card-kiri ps-4">
-                                        <div class="fs-2 semi-bold">Buyer</div>
-                                        <div class="light ">Vermak</div>
+                                        <div class="fs-2 semi-bold text-nowrap"
+                                            style="width: 115px; text-overflow: ellipsis; overflow: hidden;">
+                                            {{ $cov->nama_pemesan }}
+                                        </div>
+                                        <div class="light text-capitalize">Kode Pesanan</div>
                                         <div class="d-flex pt-2">
                                             <i class="fa-solid fa-shirt"></i>
-                                            <div class="ps-1">Baju Lebaran</div>
+                                            <div class="ps-1">{{ $cov->kode_pesanan }}</div>
                                         </div>
                                         <div class="light pt-1">Estimasi</div>
                                         <div class="d-flex pt-2">
                                             <i class="fa-solid fa-calendar-days"></i>
-                                            <div class="ps-1">10/10/2100</div>
+                                            <div class="ps-1">{{ $cov->estimasi }}</div>
                                         </div>
                                     </div>
                                     <div class="card-kanan">
                                         <div>Catatan:</div>
                                         <div class="catatan me-3 mt-1">
-                                            <div class="isi-catatan">Misalnya ini panjang panjangMisalnya ini panjang
-                                                panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya
-                                                ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
-                                                panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya
-                                                ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
-                                                panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang anjangMisalnya
-                                                ini panjang panjangMisalnya ini panjang panjangMisalnya ini panjang
-                                                panjangMisalnya ini panjang anjangMisalnya ini panjang panjangMisalnya ini
-                                                panjang panjangMisalnya ini panjang panjangMisalnya ini panjang panjangMisalnya
-                                                ini panjang panjangMisalnya ini panjang panjang</div>
+                                            <div class="isi-catatan">{{ $cov->notes }}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="mx-3 my-3">
                                 <div class="pb-3 ps-4 fs-4">
-                                    Rp. 34.000
+                                    Rp. {{ number_format($cov->harga, 0, ',', '.') }}
                                 </div>
                             </div>
                         @endforeach
